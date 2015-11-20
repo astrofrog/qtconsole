@@ -11,13 +11,18 @@ import os
 from qtconsole.qt_loaders import (load_qt, QT_API_PYSIDE,
                                          QT_API_PYQT, QT_API_PYQT5)
 
+print("HERE")
 QT_API = os.environ.get('QT_API', None)
+print("ENV1", QT_API)
 if QT_API not in [QT_API_PYSIDE, QT_API_PYQT, QT_API_PYQT5, None]:
     raise RuntimeError("Invalid Qt API %r, valid values are: %r, %r, %r" %
                        (QT_API, QT_API_PYSIDE, QT_API_PYQT, QT_API_PYQT5))
+print("ENV2", QT_API)
 if QT_API is None:
     api_opts = [QT_API_PYQT5, QT_API_PYSIDE, QT_API_PYQT]
 else:
     api_opts = [QT_API]
+
+print("OPTIONS", api_opts)
 
 QtCore, QtGui, QtSvg, QT_API = load_qt(api_opts)
